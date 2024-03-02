@@ -7,9 +7,11 @@ import ChatBox from '../components/authentication/miscellaneous/ChatBox';
 import MyChats from '../components/authentication/miscellaneous/myChats';
 import SideDrawer from '../components/authentication/miscellaneous/sideDrawer';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 const ChatPage = () => {
     const{user}=ChatState();
     // console.log("ChatPage",user)
+    const [fetchAgain, setfetchAgain] = useState(false);
   const history=useHistory();
 
     useEffect(()=>{
@@ -27,8 +29,8 @@ const ChatPage = () => {
             {user && <SideDrawer/>}
             {/* <SideDrawer/> */}
             <Box d="flex" className='flex' justifyContent="space-between" w='100%' h='91.5vh' p='10px'>
-            {user && <MyChats/>}
-            {/* {user && <ChatBox/>} */}
+            {user && (<MyChats fetchAgain={fetchAgain}/>)}
+            {user && (<ChatBox fetchAgain={fetchAgain} setfetchAgain={setfetchAgain}/>)}
             </Box>
         </div>
     )

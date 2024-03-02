@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import HomePage from './Pages/HomePage';
 import ChatPage from './Pages/ChatPage';
 
-function App() {
+function  App() {
   return (
     <>
     <div className='App'>
