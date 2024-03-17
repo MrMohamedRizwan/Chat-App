@@ -63,6 +63,7 @@ const MyChats = ({ fetchAgain }) => {
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="Work sans"
         d="flex"
+        className="flex items-center justify-center "
         w="100%"
         justifyContent="space-between"
         alignItems="center"
@@ -71,6 +72,7 @@ const MyChats = ({ fetchAgain }) => {
         <GroupChatModel>
           <Button
             d="flex"
+            
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             rightIcon={<AddIcon />}
           >
@@ -80,13 +82,20 @@ const MyChats = ({ fetchAgain }) => {
       </Box>
       <Box
         d="flex"
+        className="flex flex-col "
         flexDir="column"
         p={3}
         bg="#F8F8F8"
         w="100%"
-        h="100%"
+        h="90%"
         borderRadius="lg"
-        overflowY="hidden"
+        // overflowY="hidden"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          overflowY: 'scroll',
+          scrollbarWidth: 'none'
+        }}
       >
         {chats ? (
           <Stack overflowY="scroll">
@@ -102,9 +111,12 @@ const MyChats = ({ fetchAgain }) => {
                 key={chat._id}
               >
                 <Text>
-                  {!chat.isGroupChat
-                  ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
+                  {
+                  !chat.isGroupChat
+                  ?
+                   getSender(loggedUser, chat.users)
+                    :
+                     chat.chatName}
                 </Text>
                 {chat.latestMessage && (
                   <Text fontSize="xs">

@@ -169,7 +169,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             px={2}
             w="100%"
             fontFamily="Work sans"
-            d="flex"
+            className="flex items-center "
             justifyContent={{ base: "space-between" }}
             alignItems="center"
           >
@@ -203,8 +203,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             justifyContent="flex-end"
             p={3}
             bg="#E8E8E8"
-            w="100%"
-            h="100%"
+            className="flex flex-col justify-end  w-[100%] h-[90%]"
             borderRadius="lg"
             overflowY="hidden"
           >
@@ -217,7 +216,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 margin="auto"
               />
             ) : (
-              <div className="messages">
+              <div className="messages" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                overflowY: 'scroll',
+                scrollbarWidth: 'none'
+              }}>
                 <ScrollableChat messages={messages} />
               </div>
             )}
@@ -252,7 +256,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         </>
       ) : (
         // to get socket.io on same page
-        <Box d="flex" alignItems="center" justifyContent="center" h="100%">
+        <Box d="flex" alignItems="center" justifyContent="center"  className=" flex  items-center h-[100%] " >
           <Text fontSize="3xl" pb={3} fontFamily="Work sans">
             Click on a user to start chatting
           </Text>

@@ -5,6 +5,7 @@ const connectToDB = require('./config/db.js');
 const color=require('colors');
 const UserRoutes  = require('./routes/UserRoutes.js');
 const ChatRoutes=require("./routes/ChatRoutes.js")
+const messageRoutes=require("./routes/messageRoutes.js")
 const {notFound, errorHandler} = require('./Middlewares/errorMiddleware.js');
 const cors = require('cors');
 
@@ -31,6 +32,7 @@ const port = process.env.PORT || 50020;
 
 app.use('/api/user',UserRoutes)
 app.use('/api/chat',ChatRoutes)
+app.use('/api/message',messageRoutes)
 app.use(notFound);
 app.use(errorHandler)
 app.listen(port, () => console.log(`Server running on port ${port}`.yellow.bold));
