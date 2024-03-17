@@ -62,14 +62,12 @@ const MyChats = ({ fetchAgain }) => {
         px={3}
         fontSize={{ base: "28px", md: "30px" }}
         fontFamily="Work sans"
-        className ="flex"
+        d="flex"
         w="100%"
         justifyContent="space-between"
         alignItems="center"
       >
         My Chats
-        
-
         <GroupChatModel>
           <Button
             d="flex"
@@ -79,8 +77,6 @@ const MyChats = ({ fetchAgain }) => {
             New Group Chat
           </Button>
         </GroupChatModel>
-        
-
       </Box>
       <Box
         d="flex"
@@ -107,12 +103,12 @@ const MyChats = ({ fetchAgain }) => {
               >
                 <Text>
                   {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
+                  ? getSender(loggedUser, chat.users)
                     : chat.chatName}
                 </Text>
                 {chat.latestMessage && (
                   <Text fontSize="xs">
-                    {/* <b>{chat.latestMessage.sender.name} : </b> */}
+                    <b>{chat.latestMessage.sender.name} : </b>
                     {chat.latestMessage.content.length > 50
                       ? chat.latestMessage.content.substring(0, 51) + "..."
                       : chat.latestMessage.content}

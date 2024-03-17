@@ -13,8 +13,10 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.5",
     "framer-motion": "^10.17.9",
+    "react-lottie": "^1.2.4",
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
+    "socket.io-client": "^4.7.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
