@@ -4,7 +4,7 @@ import { Box, Text } from "@chakra-ui/layout";
 // import "./styles.css";
 import { IconButton, Spinner, useToast } from "@chakra-ui/react";
 import { getSender, getSenderFull } from "../config/ChatLogics";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
@@ -16,6 +16,7 @@ import io from "socket.io-client";
 import UpdateGroupChatModal from "../components/authentication/miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../context/chatProvider";
 import ProfileModal from "./authentication/miscellaneous/ProfileModel";
+import ScrollableDiv from "./authentication/miscellaneous/Scrollablediv";
 const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
@@ -158,7 +159,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }, timerLength);
   };
-
+  const AlwaysScrollToBottom = () => {
+    const elementRef = useRef();
+    useEffect(() => elementRef.current.scrollIntoView());
+    return <div ref={elementRef} />;
+  };
+  
   return (
     <>
       {selectedChat ? (
@@ -222,7 +228,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 overflowY: 'scroll',
                 scrollbarWidth: 'none'
               }}>
+                <div style={{ flexgrow: "1",overflowY:"scroll"}}>          
                 <ScrollableChat messages={messages} />
+                  <AlwaysScrollToBottom/>
+                </div>
+              
               </div>
             )}
 

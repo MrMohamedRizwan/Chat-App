@@ -21,7 +21,10 @@ const ChatBox = ({fetchAgain,setfetchAgain}) => {
 
     >
       <div className='text-center flex-col  w-[100%] h-[100%] '>
+      
       <Singlechats fetchAgain={fetchAgain} setfetchAgain={setfetchAgain}/>
+      
+
       </div>
     </Box>
     
