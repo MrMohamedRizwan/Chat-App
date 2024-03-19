@@ -9,9 +9,11 @@ const messageRoutes=require("./routes/messageRoutes.js")
 const {notFound, errorHandler} = require('./Middlewares/errorMiddleware.js');
 const cors = require('cors');
 const { Socket } = require('socket.io');
+const connecttoredis = require('./config/redis.js');
 
 dotenv.config();
 connectToDB();
+// connecttoredis()
 const app = express();
 app.use(cors())
 app.use(express.json());
