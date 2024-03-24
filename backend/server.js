@@ -9,15 +9,23 @@ const messageRoutes=require("./routes/messageRoutes.js")
 const {notFound, errorHandler} = require('./Middlewares/errorMiddleware.js');
 const cors = require('cors');
 const { Socket } = require('socket.io');
-const connecttoredis = require('./config/redis.js');
+const redisClient = require('./config/redis.js'); 
+
 
 dotenv.config();
 connectToDB();
-// connecttoredis()
+
 const app = express();
 app.use(cors())
 app.use(express.json());
-const port = process.env.PORT || 50020;
+const port = process.env.PORT || 5000;
+// server.js
+
+
+
+
+
+
 
 // app.get('/', (req, res) => {
 //   res.send('Hello World');
@@ -37,6 +45,13 @@ app.use('/api/user',UserRoutes)
 app.use('/api/chat',ChatRoutes)
 app.use('/api/message',messageRoutes)
 app.use(notFound);
+// app.use((req, res, next)=> {
+//   console.log('yftui')
+//   req.redisClient = redisClient;
+//   next();
+// });
+
+
 app.use(errorHandler)
 const server=app.listen(port, () => console.log(`Server running on port ${port}`.yellow.bold));
 

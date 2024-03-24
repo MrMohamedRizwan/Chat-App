@@ -49,6 +49,7 @@ const MyChats = ({ fetchAgain }) => {
   return (
     <Box
       d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+      className={`hidden ${selectedChat ? 'md:flex' : 'none'} md:block`}
       flexDir="column"
       alignItems="center"
       p={3}

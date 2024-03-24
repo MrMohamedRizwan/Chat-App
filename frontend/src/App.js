@@ -12,8 +12,6 @@ function  App() {
     <Route path='/' component={HomePage} exact/>
     <Route path='/chats' component={ChatPage} exact/>
     
-    {/* <Button colorScheme='blue'>Button</Button>
-    <h1>Rizwan</h1> */}
     </div>
     </>
   );
