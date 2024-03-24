@@ -40,7 +40,9 @@ const port = process.env.PORT || 5000;
 //   const schat = chats.find((x) => x._id === req.params.id);
 //   res.send(schat);
 // });
-
+app.get('/',(req,res)=>{
+  res.send("Server is running");
+})
 app.use('/api/user',UserRoutes)
 app.use('/api/chat',ChatRoutes)
 app.use('/api/message',messageRoutes)
