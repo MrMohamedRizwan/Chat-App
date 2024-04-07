@@ -14,14 +14,14 @@ const ChatPage = () => {
     const [fetchAgain, setfetchAgain] = useState(false);
   const history=useHistory();
 
-    useEffect(()=>{
-        const user=JSON.parse(localStorage.getItem("userInfo"))
-        console.log("Chat page user",user)
-        if(!user)
-        {
-            history.push('/')
-        }
-    },[history]);
+    // useEffect(()=>{
+    //     const user=JSON.parse(localStorage.getItem("userInfo"))
+    //     console.log("Chat page user",user)
+    //     if(!user)
+    //     {
+    //         history.push('/')
+    //     }
+    // },[history]);
     return (
         // chatpage
         <div style={{width:"100%"}}>

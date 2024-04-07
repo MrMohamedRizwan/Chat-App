@@ -10,6 +10,7 @@ const {notFound, errorHandler} = require('./Middlewares/errorMiddleware.js');
 const cors = require('cors');
 const { Socket } = require('socket.io');
 const redisClient = require('./config/redis.js'); 
+const path = require('path');
 
 
 dotenv.config();
@@ -27,9 +28,7 @@ const port = process.env.PORT || 5000;
 
 
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World');
-// });
+
 
 // app.get('/api', (req, res) => {
 //   res.send(chats);
@@ -40,21 +39,44 @@ const port = process.env.PORT || 5000;
 //   const schat = chats.find((x) => x._id === req.params.id);
 //   res.send(schat);
 // });
-app.get('/',(req,res)=>{
-  res.send("Server is running");
-})
+
 app.use('/api/user',UserRoutes)
 app.use('/api/chat',ChatRoutes)
 app.use('/api/message',messageRoutes)
-app.use(notFound);
+// app.use(notFound);
 // app.use((req, res, next)=> {
 //   console.log('yftui')
 //   req.redisClient = redisClient;
 //   next();
 // });
 
+///deploy
 
+const __dirname1 = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+  );
+  // app.get("/", (req, res) => {
+  //   res.send("API is running..");
+  // });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+///deploy
+
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
+app.use(notFound)
 app.use(errorHandler)
+
 const server=app.listen(port, () => console.log(`Server running on port ${port}`.yellow.bold));
 
 const io=require('socket.io')(server,{
