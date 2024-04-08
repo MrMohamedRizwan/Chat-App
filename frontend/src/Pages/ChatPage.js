@@ -10,20 +10,23 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ChatPage = () => {
     const{user}=ChatState();
+    console.log(user)
     // console.log("ChatPage",user)
     const [fetchAgain, setfetchAgain] = useState(false);
-  const history=useHistory();
+//   const history=useHistory();
 
-    // useEffect(()=>{
-    //     const user=JSON.parse(localStorage.getItem("userInfo"))
-    //     console.log("Chat page user",user)
-    //     if(!user)
-    //     {
-    //         history.push('/')
-    //     }
-    // },[history]);
+//     useEffect(()=>{
+//         // const user=JSON.parse(localStorage.getItem("userInfo"))
+//         console.log("Chat page user",user)
+//         if(!user)
+//         {
+//             history.push('/')
+//         }
+//     },[history]);
     return (
-        // chatpage
+    <>
+        {/* {JSON.stringify(user)} */}
+
         <div style={{width:"100%"}}>
             
             {user && <SideDrawer/>}
@@ -33,6 +36,8 @@ const ChatPage = () => {
             {user && (<ChatBox fetchAgain={fetchAgain} setfetchAgain={setfetchAgain}/>)}
             </Box>
         </div>
+    </>
+
     )
 }
 
