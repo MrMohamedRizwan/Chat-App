@@ -17,7 +17,7 @@ import UpdateGroupChatModal from "../components/authentication/miscellaneous/Upd
 import { ChatState } from "../context/chatProvider";
 import ProfileModal from "./authentication/miscellaneous/ProfileModel";
 import ScrollableDiv from "./authentication/miscellaneous/Scrollablediv";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://chat-app-backend-yded.onrender.com"; 
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
