@@ -11,6 +11,7 @@ const cors = require('cors');
 const { Socket } = require('socket.io');
 const redisClient = require('./config/redis.js'); 
 const path = require('path');
+const morgan = require("morgan");
 
 
 dotenv.config();
@@ -24,6 +25,7 @@ const port = process.env.PORT || 5000;
 
 
 
+app.use(morgan("dev"));
 
 
 
