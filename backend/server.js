@@ -6,6 +6,8 @@ const color=require('colors');
 const UserRoutes  = require('./routes/UserRoutes.js');
 const ChatRoutes=require("./routes/ChatRoutes.js")
 const messageRoutes=require("./routes/messageRoutes.js")
+const JSON = require("./swagger-output.json");
+const swaggerUI = require("swagger-ui-express");
 const {notFound, errorHandler} = require('./Middlewares/errorMiddleware.js');
 const cors = require('cors');
 const { Socket } = require('socket.io');
@@ -27,7 +29,11 @@ const port = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
 
-
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(JSON));
+app.get("/swagger-json", (req, res) => {
+	res.setHeader("Content-Type", "application/json");
+	res.send(JSON);
+});
 
 
 

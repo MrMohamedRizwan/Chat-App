@@ -1,0 +1,164 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "Whatsapp Monitoring",
+		"description": "Monitor whatsapp groups",
+		"version": "1.0.0"
+	},
+	"host": "localhost:5000/api",
+	"basePath": "/",
+	"schemes": ["http"],
+	"paths": {
+		"/api/user": {
+			"post": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"name": {
+									"example": "any"
+								},
+								"email": {
+									"example": "any"
+								},
+								"password": {
+									"example": "any"
+								},
+								"pic": {
+									"example": "any"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"201": {
+						"description": "Created"
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "search",
+						"in": "query",
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					}
+				}
+			}
+		},
+		"/group": {
+			"post": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/renamegroup": {
+			"put": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/addTogroup": {
+			"post": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/removeFromgroup": {
+			"post": {
+				"description": "",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/{chatId}": {
+			"get": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "chatId",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					}
+				}
+			}
+		},
+		"/api/user/login": {
+			"post": {
+				"description": "",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"email": {
+									"example": "any"
+								},
+								"password": {
+									"example": "any"
+								}
+							}
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"description": "Bad Request"
+					}
+				}
+			}
+		}
+	}
+}
