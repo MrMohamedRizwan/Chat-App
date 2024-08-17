@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 const HomePage = () => {
 
-  const history=useHistory();
+  const history=useHistory(); 
   useEffect(()=>{
     const user=JSON.parse(localStorage.getItem("userInfo"))
     console.log("Home Page user",user)

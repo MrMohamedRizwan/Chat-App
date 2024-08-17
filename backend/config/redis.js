@@ -1,21 +1,24 @@
+const Redis = require("ioredis");
 
-// const redis = require('redis');
+// Create a new Redis client
+const connectToRedis = new Redis({
+	host: "localhost", // Replace with your Redis server host
+	port: 6379, // Replace with your Redis server port if different
+});
 
-// // Create a Redis client
-// const redisClient = redis.createClient({
-//     host: 'localhost', // Redis server host
-//     port: 6379,        // Redis server port
-//     // Optionally, add more configuration options here
-// });
+connectToRedis.on("connect", () => {
+	console.log("Connected to Redis".red.bold);
+});
 
-// // Event listener for connection
-// redisClient.on('connect', function() {
-//     console.log('Connected to Redis');
-// });
+connectToRedis.on("error", (err) => {
+	console.error("Redis error: " + err);
+});
+connectToRedis.set('mykey', 'myvalue')
+  .then(result => {
+    console.log('Set result:', result); // Should print 'OK'
+  })
+  .catch(error => {
+    console.error('Error setting value:', error);
+  });
 
-// // Event listener for errors
-// redisClient.on('error', function(err) {
-//     console.error('Redis Error:', err);
-// });
-
-// module.exports = redisClient;
+module.exports = connectToRedis;
