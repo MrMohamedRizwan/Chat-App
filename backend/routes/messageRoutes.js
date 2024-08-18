@@ -1,9 +1,11 @@
 const app=require('express')
 const { protect } = require("../Middlewares/authuMiddleware");
-const { sendMessage, fetchMessages } = require('../controllers/messageController');
+const { sendMessage, fetchMessages, deleteMessage, editMessage } = require('../controllers/messageController');
 const router=app.Router()
 router.route('/').post(protect,sendMessage);
 router.route('/:chatId').get(protect,fetchMessages);
+router.route("/delete/:id").delete(protect, deleteMessage);
+router.route("/edit/:id").put(protect, editMessage);
 module.exports=router;
 
 /*#swagger.summary = 'Add a Group to be monitored'

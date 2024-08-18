@@ -11,7 +11,7 @@ const swaggerUI = require("swagger-ui-express");
 const { notFound, errorHandler } = require("./Middlewares/errorMiddleware.js");
 const cors = require("cors");
 const { Socket } = require("socket.io");
-const connectToRedis = require("./config/redis.js");
+// const connectToRedis = require("./config/redis.js");
 const path = require("path");
 const morgan = require("morgan");
 
@@ -87,15 +87,25 @@ const server = app.listen(port, () =>
 const io = require("socket.io")(server, {
 	pingTimeout: 60000,
 	cors: {
-		origin: "https://chat-app-q5tc.onrender.com",
+		origin: "http://localhost:3000",
+		methods: ["GET", "POST"],
 	},
 });
-
+const users = {};
 io.on("connection", (socket) => {
 	console.log("Connected to socket.io");
 	socket.on("setup", (userData) => {
 		socket.join(userData._id);
 		socket.emit("connected");
+	});
+	socket.on("setup", (userData) => {
+		// console.log(userData._id);
+		if (userData && userData._id) {
+			socket.join(userData._id);
+			users[userData._id] = socket.id;
+			io.emit("user-online", userData._id);
+			io.emit("online-users", Object.keys(users));
+		}
 	});
 
 	socket.on("join chat", (room) => {
@@ -107,13 +117,28 @@ io.on("connection", (socket) => {
 
 	socket.on("new message", (newMessageRecieved) => {
 		var chat = newMessageRecieved.chat;
-
 		if (!chat.users) return console.log("chat.users not defined");
 
 		chat.users.forEach((user) => {
 			if (user._id == newMessageRecieved.sender._id) return;
-
+			// console.log(user._id);
 			socket.in(user._id).emit("message recieved", newMessageRecieved);
 		});
+	});
+
+	socket.on("disconnect", () => {
+		let userId;
+		for (const [id, socketId] of Object.entries(users)) {
+			if (socketId === socket.id) {
+				userId = id;
+				delete users[id];
+				break;
+			}
+		}
+
+		if (userId) {
+			io.emit("user-offline", userId);
+			io.emit("online-users", Object.keys(users));
+		}
 	});
 });
