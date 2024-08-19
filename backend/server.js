@@ -87,7 +87,7 @@ const server = app.listen(port, () =>
 const io = require("socket.io")(server, {
 	pingTimeout: 60000,
 	cors: {
-		origin: "https://chat-app-mauve-six.vercel.app/",
+		origin: "*",
 		methods: ["GET", "POST"],
 		allowedHeaders: "*",  // Allow all headers
 		credentials: true
