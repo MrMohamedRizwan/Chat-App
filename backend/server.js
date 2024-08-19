@@ -89,6 +89,9 @@ const io = require("socket.io")(server, {
 	cors: {
 		origin: "https://chat-app-mauve-six.vercel.app/chats",
 		methods: ["GET", "POST"],
+		allowedHeaders: "*",  // Allow all headers
+		credentials: true
+	
 	},
 });
 const users = {};
