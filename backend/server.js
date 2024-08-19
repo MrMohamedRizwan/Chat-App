@@ -19,7 +19,7 @@ dotenv.config();
 connectToDB();
 
 const app = express();
-app.use(cors({origin:"https://chat-app-mauve-six.vercel.app"}));
+app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 5000;
 // server.js
