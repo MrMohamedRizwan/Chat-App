@@ -18,7 +18,7 @@ import { ChatState } from "../context/chatProvider";
 import ProfileModal from "./authentication/miscellaneous/ProfileModel";
 import ScrollableDiv from "./authentication/miscellaneous/Scrollablediv";
 import { API_URL } from "../configurations/config";
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = API_URL;
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -207,15 +207,17 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 						{messages &&
 							(!selectedChat.isGroupChat ? (
 								<>
-								{(useronlinestatus = getSender(user, selectedChat.users))}
-								{OnlineUsers.includes(selectedChat.users[1]?._id) && (
-									<div className='green absolute lg:mx-[36%] mt-[2%] md:mx-[36%] sm:mx-[53%] mx-[52%] '>
-										online
-									</div>
-								)}
+									{(useronlinestatus = getSender(user, selectedChat.users))}
+									{OnlineUsers.includes(selectedChat.users[1]?._id) && (
+										<div className='green absolute lg:mx-[36%] mt-[2%] md:mx-[36%] sm:mx-[53%] mx-[52%] '>
+											online
+										</div>
+									)}
 
-								<ProfileModal user={getSenderFull(user, selectedChat.users)} />
-							</>
+									<ProfileModal
+										user={getSenderFull(user, selectedChat.users)}
+									/>
+								</>
 							) : (
 								<>
 									{selectedChat.chatName.toUpperCase()}
