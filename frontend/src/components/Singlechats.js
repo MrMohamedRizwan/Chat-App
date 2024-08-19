@@ -17,6 +17,7 @@ import UpdateGroupChatModal from "../components/authentication/miscellaneous/Upd
 import { ChatState } from "../context/chatProvider";
 import ProfileModal from "./authentication/miscellaneous/ProfileModel";
 import ScrollableDiv from "./authentication/miscellaneous/Scrollablediv";
+import { API_URL } from "../configurations/config";
 const ENDPOINT = "http://localhost:5000";
 var socket, selectedChatCompare;
 
@@ -53,7 +54,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 			setLoading(true);
 
 			const { data } = await axios.get(
-				`/api/message/${selectedChat._id}`,
+				`${API_URL}/api/message/${selectedChat._id}`,
 				config,
 			);
 			setMessages(data);
@@ -84,7 +85,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 				};
 				setNewMessage("");
 				const { data } = await axios.post(
-					"/api/message",
+					`${API_URL}/api/message`,
 					{
 						content: newMessage,
 						chatId: selectedChat,

@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from "axios";
 import ChatLoading from '../ChatLoading';
 import UserListItem from '../userAvatar/userListItem';
+import { API_URL } from '../../../configurations/config';
 const SideDrawer = () => {
   const {selectedChat,
     setSelectedChat,
@@ -30,7 +31,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/api/chat`, { userId }, config);
+      const { data } = await axios.post(`${API_URL}/api/chat`, { userId }, config);
       console.log(chats,"log ")
       if (!chats || !chats.find) {
         // Handle the case where `chats` is undefined or doesn't have a `find` method
@@ -77,7 +78,7 @@ const SideDrawer = () => {
         },
       };
 
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`${API_URL}/api/user?search=${search}`, config);
       // console.log(data)
 
       setLoading(false);

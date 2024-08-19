@@ -2,6 +2,7 @@ import { Button, FormControl, FormLabel, Input, VStack, createMultiStyleConfigHe
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../../configurations/config';
 const Signup = () => {
   const [name,setName] = useState('')
   const [email,setEmail] = useState('')
@@ -150,7 +151,7 @@ const Signup = () => {
           },
         };
         const { data } = await axios.post(
-          "/api/user",
+          `${API_URL}/api/user`,
           {
             name,
             email,

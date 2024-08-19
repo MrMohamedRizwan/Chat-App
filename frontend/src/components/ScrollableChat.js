@@ -20,6 +20,7 @@ import {
 	isSameUser,
 } from "../config/ChatLogics";
 import axios from "axios";
+import { API_URL } from "../configurations/config";
 
 const ScrollableChat = ({ messages }) => {
 	const [localMessages, setLocalMessages] = useState(messages || []);
@@ -41,7 +42,7 @@ const ScrollableChat = ({ messages }) => {
 					Authorization: `Bearer ${user.token}`,
 				},
 			};
-			const response = await axios.delete(`/api/message/delete/${id}`, config);
+			const response = await axios.delete(`${API_URL}/api/message/delete/${id}`, config);
 			// console.log("Message deleted:", response.data);
 
 			setLocalMessages(localMessages.filter((message) => message._id !== id));
@@ -59,7 +60,7 @@ const ScrollableChat = ({ messages }) => {
 				},
 			};
 			const response = await axios.put(
-				`/api/message/edit/${id}`,
+				`${API_URL}/api/message/edit/${id}`,
 				{ content },
 				config,
 			);

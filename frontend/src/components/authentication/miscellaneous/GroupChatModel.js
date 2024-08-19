@@ -6,6 +6,7 @@ import axios from 'axios';
 import UserListItem from '../userAvatar/userListItem';
 import UserBadgeListItem from '../userAvatar/UserBadgeListItem';
 import UserBadgeItem from '../userAvatar/UserBadgeListItem';
+import { API_URL } from '../../../configurations/config';
 
 const GroupChatModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -85,7 +86,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        `/api/chat/group`,
+        `${API_URL}/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),
