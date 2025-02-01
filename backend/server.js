@@ -17,7 +17,7 @@ const morgan = require("morgan");
 
 
 dotenv.config();
-connectToDB();
+connectToDB()
 const app = express();
 app.use(cors());
 app.use(express.json());
